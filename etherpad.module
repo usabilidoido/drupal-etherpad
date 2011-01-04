@@ -314,3 +314,13 @@ function etherpad_generate_padid($domain) {
 
   return $pad_id;
 }
+
+/**
+ * Implementation of hook_og_mailinglist_new_node_alter().
+ *
+ * Change the default OG Mailinglist email to something more fitting to Etherpad.
+ **/
+function etherpad_og_mailinglist_new_node_alter(&$data) {
+  $data['subject'] = t("A new Notes pad has been added for ISys 401: @title", array('@title' => $data['title']));
+  $data['body'] = t("<p>A Notes pad let's you and others in your group write together in realtime! It's great for taking notes together in class or collaboratively preparing study materials</p> <br /><a style='font-size:150%' href='!link'>Start writing</a>", array('!link' => url('node/' . $data['nid'], array('absolute' => TRUE))));
+}
