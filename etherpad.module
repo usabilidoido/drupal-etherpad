@@ -269,7 +269,9 @@ function etherpad_etherpad($path, $options = FALSE) {
     $options['attributes']['height'] = '701';
   }
   
-  $path = $path . "?_theme=nano"; // Randomly generate id, figure out why this doesn't want to work on book / polls. Fetch html, for teaser, show straight HTML
+  global $user; // pull the current user
+  $username = $user->name ;
+  $path = $path . "?_theme=nano&userName=$username"; // Randomly generate id, figure out why this doesn't want to work on book / polls. Fetch html, for teaser, show straight HTML
   $htmlid = '';
   if (isset($options['html-id']) && !empty($options['html-id'])) {
     $htmlid = ' id="' . $options['html-id'] . '" name="' . $options['html-id'] . '"';
